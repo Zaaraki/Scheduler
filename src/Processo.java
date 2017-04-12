@@ -50,12 +50,14 @@ public class Processo implements Comparable<Processo>{
     }
 
     public int compareTo(Processo aux){
-        if((this.tC < aux.gettC() || this.tC == aux.gettC()) && (this.gettD() < aux.gettD())){
-            return -1;
-        }
-        else if((this.tC> aux.gettC() || this.tC == aux.gettC()) && (this.gettD() > aux.gettD())){
-            return 1;
-        }
+//        if((this.tC < aux.gettC() || this.tC == aux.gettC()) && (this.gettD() < aux.gettD())){
+//            return -1;
+//        }
+//        else if((this.tC> aux.gettC() || this.tC == aux.gettC()) && (this.gettD() > aux.gettD())){
+//            return 1;
+//        }
+        if(this.gettC() < aux.gettC()) return -1;
+        else if (this.gettC() > aux.gettC()) return 1;
         else
             return 0;
     }
