@@ -2,37 +2,32 @@
  * Created by amaro on 09/04/2017.
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Scheduling {
+    public static Scanner dado = new Scanner(System.in);
+    public static List<Processo> listaP = new ArrayList<Processo>();
+
     public static void main(String[] args) {
-
-        Scanner nP = new Scanner(System.in);
-        Scanner tempoC = new Scanner(System.in);
-        Scanner tempoD = new Scanner(System.in);
-
-        int n;
-
-        System.out.println("Digite o numero de processos: ");
-        n=nP.nextInt();
-
-        int proc[] = new int [n];
-        int tC[] = new int [n+1]; // Tempo de chegada
-        int tD[] = new int [n+1]; //Tempo de duração
-
-        for (int i = 0; i < n; i++) {
-            proc[i] = i;
+        int id = 0;
+        while (true) {
+            String in[] = dado.nextLine().split(" ");
+            if (in[0].isEmpty() || in[1].isEmpty()) {
+                dado.close();
+                break;
+            }
+            listaP.add(new Processo(++id, Integer.parseInt(in[0]), Integer.parseInt(in[1])));
         }
 
-        for(int i=0; i<n; i++){
-            System.out.println("Digite o tempo de chegada para o processo " + i);
-            tC[i] = tempoC.nextInt();
-            System.out.println("Digite o tempo de duracao para o processo " + i);
-            tD[i] = tempoD.nextInt();
-        }
-
-        FCFS.tMedio(n, proc, tC, tD);
-
+        FCFS fcfs = new FCFS(listaP);
+        SJF sjf = new SJF(listaP);
+//        RR rr = new RR(listaP);
+//
+//        fcfs.print();
+//        sjf.print();
+//        rr.print();
 
     }
 }
